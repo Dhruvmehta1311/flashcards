@@ -34,10 +34,10 @@ const questions = [
 
 function App() {
   return (
-    <div className="flex items-center justify-center min-h-screen flex-wrap gap-4 max-2-[400px] w-[90%] py-4">
+    <div className="flex items-center justify-center min-h-screen flex-wrap gap-4 max-w-[1200px] mx-auto py-4">
       {questions.map((question) => (
         <div
-          className="bg-zinc-300 h-[200px] flex items-center justify-center p-6 w-[300px]"
+          className="shadow-lg bg-zinc-300 h-[200px] flex items-center justify-center p-6 w-[300px] "
           key={question.id}
         >
           <p className="font-semibold">{question.question}</p>
