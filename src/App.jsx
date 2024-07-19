@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const questions = [
   {
     id: 3457,
@@ -32,19 +34,39 @@ const questions = [
   },
 ];
 
-function App() {
+export default function App() {
+  const [selectedId, setSelectedId] = useState(null);
+
+  function handleState(e) {
+    console.log(e.target.id);
+    setSelectedId(Number(e.target.id));
+  }
+
+  function handleClick(id) {
+    setSelectedId(id !== selectedId ? id : null);
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen flex-wrap gap-4 max-w-[1200px] mx-auto py-4">
       {questions.map((question) => (
         <div
-          className="shadow-lg bg-zinc-300 h-[200px] flex items-center justify-center p-6 w-[300px] "
+          id={question.id}
+          // onClick={(e) => setSelectedId(Number(e.target.id))}
+          onClick={() => handleClick(question.id)}
+          className={`shadow-lg 
+            ${
+              question.id === selectedId
+                ? "bg-red-700 text-white"
+                : "bg-zinc-300"
+            }
+           h-[200px] flex items-center justify-center p-6 w-[300px] `}
           key={question.id}
         >
-          <p className="font-semibold">{question.question}</p>
+          <p id={question.id} className="font-semibold">
+            {question.id === selectedId ? question.answer : question.question}
+          </p>
         </div>
       ))}
     </div>
   );
 }
-
-export default App;
